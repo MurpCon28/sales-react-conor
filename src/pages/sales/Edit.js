@@ -35,6 +35,15 @@ const Edit = () => {
         setForm({
           saleDate: moment(sale.saleDate).format("yyyy-MM-DDThh:mm"),
           storeLocation: sale.storeLocation,
+          // itemName: sale.items.name,
+          // itemTags: sale.items.tags,
+          // itemPrice: sale.items.price.$numberDecimal,
+          // itemQuantity: sale.items.quantity,
+          // customer: sale.customer.email,
+          // customer: sale.customer.gender,
+          // customer: sale.customer.age,
+          // customer: sale.customer.satisfaction,
+          // couponUsed: sale.couponUsed,
           purchaseMethod: sale.purchaseMethod
         })
       }, [sale])

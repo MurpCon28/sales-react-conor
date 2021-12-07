@@ -29,15 +29,40 @@ const Show = () => {
        }, [_id])
 
       if (!sale) return null;
+
+      const Item = (props) => {
+       const tagList = props.item.tags.map(tag => (
+          <p><b>Tag: </b>{tag}</p>
+        ))
+
+        return (
+          <>
+            <p><b>Item: </b>{props.item.name}</p>
+            {tagList}
+            <p><b>Price: </b>{props.item.price.$numberDecimal}</p>
+            <p><b>Quantity: </b>{props.item.quantity}</p>
+            <br/>
+          </>
+        )
+
+      }
+
+      const itemsList = sale.items.map(item => (
+        <Item key={item.name} item={item} />
+      ))
   
     return (
       <div>
         <h2>This is the sale show page {_id} </h2>
 
         <p><b>Sale Date:</b> {sale.saleDate}</p>
-        <p><b>Items:</b> {sale.items.name}</p>
+        {itemsList}
         <p><b>Store Location:</b> {sale.storeLocation}</p>
-        <p><b>Customer:</b> {sale.customer.name}</p>
+        <p><b>Customer Email:</b> {sale.customer.email}</p>
+        <p><b>Customer Gender:</b> {sale.customer.gender}</p>
+        <p><b>Customer Age:</b> {sale.customer.age}</p>
+        <p><b>Customer Satisfaction:</b> {sale.customer.satisfaction}</p>
+        <p><b>Coupon Used:</b> {sale.couponUsed}</p>
         <p><b>Purchase Method:</b> {sale.purchaseMethod}</p>
         <Link to="edit">Edit</Link>
       </div>
