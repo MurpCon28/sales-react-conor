@@ -35,10 +35,24 @@ const Edit = () => {
         setForm({
           saleDate: moment(sale.saleDate).format("yyyy-MM-DDThh:mm"),
           storeLocation: sale.storeLocation,
+          // items: {
+          //       name: sale.items.name,
+          //       tags: sale.items.tags,
+          //       price: {
+          //           $numberDecimal: sale.items.price.$numberDecimal
+          //       },
+          //       quantity: sale.items.quantity
+          //   },
           // itemName: sale.items.name,
           // itemTags: sale.items.tags,
           // itemPrice: sale.items.price.$numberDecimal,
           // itemQuantity: sale.items.quantity,
+        //   customer: {
+        //     gender: sale.customer.gender,
+        //     age: sale.customer.age,
+        //     email: sale.customer.email,
+        //     satisfaction: sale.customer.satisfaction
+        // },
           // customer: sale.customer.email,
           // customer: sale.customer.gender,
           // customer: sale.customer.age,
@@ -63,7 +77,7 @@ const Edit = () => {
     const submitForm = () => {
       console.log(form)
 
-      let token = localStorage.getItem("token")
+      let token = localStorage.getItem("auth_token")
   
       axios.put(`http://localhost:8001/sales/${_id}`, form, {
         headers: {
@@ -71,8 +85,8 @@ const Edit = () => {
       }
       })
             .then(response => {
-              console.log(response.data.token)
-              navigate(`/sales/${response.data_id}`)
+              console.log(response.data)
+              navigate(`/sales/${_id}`)
             })
             .catch(err => console.log(err))
     }
@@ -129,6 +143,99 @@ const Edit = () => {
             </div>
           ) : (<Loading />)
         }
+
+        {/* {
+          form.form.sale.items.name ? (
+            <div className="form-group">
+              <TextField label="Item Name" variant="filled" name="name" onChange={handleForm} value={form.sale.items.name} />
+            </div>
+          ) : (<Loading />)
+        } */}
+
+        {/* {
+          form.sale.items.tags ? (
+            <div className="form-group">
+              <FormControl variant="filled" fullWidth>
+                <FormLabel component="legend">Tags</FormLabel>
+                  <FormGroup>
+                    <FormControlLabel control={<Checkbox checked={electronics} onChange={handleForm} name="electronics" />} label="Electronics" value={form.sale.items.tags} />
+                    <FormControlLabel control={ <Checkbox checked={school} onChange={handleForm} name="school" /> } label="School" value={form.sale.items.tags} />
+                    <FormControlLabel control={ <Checkbox checked={office} onChange={handleForm} name="office" /> } label="Office" value={form.sale.items.tags} />
+                    <FormControlLabel control={ <Checkbox checked={stationary} onChange={handleForm} name="stationary" /> } label="Stationary" value={form.sale.items.tags} />
+                    <FormControlLabel control={ <Checkbox checked={general} onChange={handleForm} name="general" /> } label="General" value={form.sale.items.tags} />
+                    <FormControlLabel control={ <Checkbox checked={organization} onChange={handleForm} name="organization" /> } label="Organization" value={form.sale.items.tags} />
+                    <FormControlLabel control={ <Checkbox checked={writing} onChange={handleForm} name="writing" /> } label="Writing" value={form.sale.items.tags} />
+                    <FormControlLabel control={ <Checkbox checked={travel} onChange={handleForm} name="travel" /> } label="Travel" value={form.sale.items.tags} />
+                    <FormControlLabel control={ <Checkbox checked={kids} onChange={handleForm} name="kids" /> } label="Kids" value={form.sale.items.tags} />
+                  </FormGroup>
+                </FormControl>
+            </div>
+          ) : (<Loading />)
+        } */}
+
+        {/* {
+          form.sale.items.quantity ? (
+            <div className="form-group">
+              <TextField label="Price" variant="filled" name="$numberDecimal" onChange={handleForm} value={form.sale.items.quantity} />
+            </div>
+          ) : (<Loading />)
+        } */}
+
+        {/* {
+          form.sale.items.price.$numberDecimal ? (
+            <div className="form-group">
+              <TextField label="Quantity" variant="filled" name="quantity" onChange={handleForm} value={form.sale.items.price.$numberDecimal} />
+            </div>
+          ) : (<Loading />)
+        } */}
+
+        {/* {
+          form.sale.customer.gender ? (
+            <div className="form-group">
+              <FormControl variant="filled" fullWidth>
+                <InputLabel id="gender-select-label">Customer Gender</InputLabel>
+                  <Select labelId="gender-select-label" onChange={handleForm} label="gender" name="gender" value={form.sale.customer.gender} >
+                    <MenuItem value="M">Male</MenuItem>
+                    <MenuItem value="F">Female</MenuItem>
+                    <MenuItem value="O">Other</MenuItem>
+                  </Select>
+              </FormControl>
+            </div>
+          ) : (<Loading />)
+        } */}
+
+        {/* {
+          form.sale.customer.age ? (
+            <div className="form-group">
+              <TextField label="Customer Age" variant="filled" name="age" onChange={handleForm} value={form.sale.customer.age} />
+            </div>
+          ) : (<Loading />)
+        } */}
+
+        {/* {
+          form.sale.customer.email ? (
+            <div className="form-group">
+              <TextField label="Customer Email" variant="filled" name="email" onChange={handleForm} value={form.sale.customer.email} />
+            </div>
+            ) : (<Loading />)
+        } */}
+
+        {/* {
+          form.sale.customer.satisfaction ? (
+            <div className="form-group">
+              <FormControl variant="filled" fullWidth>
+                <InputLabel id="satisfaction-select-label">Customer Satisfaction (1-5)</InputLabel>
+                  <Select labelId="satisfaction-select-label" onChange={handleForm} label="Satisfaction" name="satisfaction" value={form.sale.customer.satisfaction} >
+                    <MenuItem value="1">1</MenuItem>
+                    <MenuItem value="2">2</MenuItem>
+                    <MenuItem value="3">3</MenuItem>
+                    <MenuItem value="4">4</MenuItem>
+                    <MenuItem value="5">5</MenuItem>
+                  </Select>
+              </FormControl>
+            </div>
+          ) : (<Loading />)
+        } */}
 
         {
           form.purchaseMethod ? (

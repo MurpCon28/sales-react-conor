@@ -1,4 +1,11 @@
-import { Link,useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import * as React from 'react';
+// import { styled, alpha } from '@mui/material/styles';
+// import AppBar from '@mui/material/AppBar';
+import { AppBar, Toolbar, IconButton, Typography, Button } from '@mui/material'
+import MenuIcon from '@mui/icons-material/Menu';
+// import InputBase from '@mui/material/InputBase';
+// import SearchIcon from '@mui/icons-material/Search';
 
 const Navbar = props => {
 
@@ -10,15 +17,45 @@ const Navbar = props => {
     navigate('/', { replace: true})
   }
 
-  if (props.authenticated) {
-    logoutButton = <button onClick={logout}>Logout</button>
+  const home = () => {
+    navigate('/')
   }
+
+  const sales = () => {
+    navigate('/sales')
+  }
+
+  if (props.authenticated) {
+    logoutButton = <Button onClick={logout} color="inherit">Logout</Button>
+  }
+
+  // const pages = ['Home', 'Sales'];
 
   return (
     <div>
-      <Link to="/">Home</Link> |
-      <Link to="sales"> Sales</Link>
-      {logoutButton}
+
+      <AppBar position="static">
+        <Toolbar>
+            <IconButton
+              size="large"
+              edge="start"
+              color="inherit"
+              aria-label="menu"
+              sx={{ mr: 2 }}
+            >
+              <MenuIcon />
+            </IconButton>
+              <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                Sales
+              </Typography>
+              <Button onClick={home} color="inherit">Home</Button>
+              <Button onClick={sales} color="inherit">Sales</Button>
+              <Button color="inherit">Register</Button>
+              {/* <Link to="/">Home</Link> |
+              <Link to="sales"> Sales</Link> */}
+            {logoutButton}
+        </Toolbar>
+      </AppBar>
     </div>
   );
 };

@@ -54,6 +54,7 @@ const Show = () => {
     return (
       <div>
         <h2>This is the sale show page {_id} </h2>
+        <Link to="edit">Edit</Link>
 
         <p><b>Sale Date:</b> {sale.saleDate}</p>
         {itemsList}
@@ -64,7 +65,6 @@ const Show = () => {
         <p><b>Customer Satisfaction:</b> {sale.customer.satisfaction}</p>
         <p><b>Coupon Used:</b> {sale.couponUsed}</p>
         <p><b>Purchase Method:</b> {sale.purchaseMethod}</p>
-        <Link to="edit">Edit</Link>
       </div>
     )
   }

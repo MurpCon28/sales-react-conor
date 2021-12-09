@@ -24,8 +24,8 @@ const LoginForm = (props) => {
         password: form.password
       })
             .then(response => {
-              console.log(response.data.token)
-              props.onAuthenticated(true, response.data.token)
+              console.log(response.data.auth_token)
+              props.onAuthenticated(true, response.data.auth_token)
             })
             .catch(err => console.log(err))
     }

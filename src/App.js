@@ -17,18 +17,18 @@ const App = () => {
   let protectedSales
 
   useEffect(() => {
-    if(localStorage.getItem('token')) {
+    if(localStorage.getItem('auth_token')) {
       setAuthenticated(true)
     }
   }, []);
 
-  const onAuthenticated = (auth, token) => {
+  const onAuthenticated = (auth, auth_token) => {
     setAuthenticated(auth)
     if (auth) {
-      localStorage.setItem('token', token)
+      localStorage.setItem('auth_token', auth_token)
     } 
     else {
-      localStorage.removeItem('token')
+      localStorage.removeItem('auth_token')
     }
   }
 
