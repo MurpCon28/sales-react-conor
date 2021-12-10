@@ -1,10 +1,14 @@
 import { useState } from 'react'
 import axios from "axios";
 import TextField from '@mui/material/TextField'
+import { useNavigate } from "react-router-dom";
 
-const LoginForm = (props) => {
+// const RegisterForm = (props) => {
+const RegisterForm = () => {
 
-  const[form, setForm] = useState({email: "Testemail@email.com", password: "password"})
+  const[form, setForm] = useState({ name: "Testt Name", email: "registerTestEmail@email.com", password: "password"})
+
+  let navigate = useNavigate()
 
     const handleForm = e => {
 
@@ -19,13 +23,15 @@ const LoginForm = (props) => {
     const submitForm = () => {
       console.log(form)
   
-      axios.post('http://localhost:8001/users/login', {
+      axios.post('http://localhost:8001/users/register', {
+        name: form.name,
         email: form.email,
         password: form.password
       })
             .then(response => {
               console.log(response.data.auth_token)
-              props.onAuthenticated(true, response.data.auth_token)
+              // props.onAuthenticated(true, response.data.auth_token)
+              navigate('/')
             })
             .catch(err => console.log(err))
     }
@@ -37,9 +43,11 @@ const LoginForm = (props) => {
 
     return (
       <>
-
       <div className="form-group">
         <TextField label="Email" type="email" variant="outlined" name="email" onChange={handleForm} />
+      </div>
+      <div className="form-group">
+        <TextField label="Name" variant="outlined" name="name" onChange={handleForm} />
       </div>
       <div className="form-group">
         <TextField label="Password" type="password" variant="outlined" name="password" onChange={handleForm} />
@@ -50,4 +58,4 @@ const LoginForm = (props) => {
     )
   }
 
-  export default LoginForm
+  export default RegisterForm

@@ -11,6 +11,8 @@ const Navbar = props => {
 
   let navigate = useNavigate()
   let logoutButton;
+  let loginButton;
+  let registerButton;
 
   const logout = () => {
     props.onAuthenticated(false)
@@ -25,8 +27,19 @@ const Navbar = props => {
     navigate('/sales')
   }
 
+  const login = () => {
+    navigate('/login')
+  }
+
+  const register = () => {
+    navigate('/register')
+  }
+
   if (props.authenticated) {
     logoutButton = <Button onClick={logout} color="inherit">Logout</Button>
+  } else {
+    loginButton = <Button onClick={login} color="inherit">Login</Button>
+    registerButton = <Button onClick={register} color="inherit">Register</Button>
   }
 
   // const pages = ['Home', 'Sales'];
@@ -50,9 +63,12 @@ const Navbar = props => {
               </Typography>
               <Button onClick={home} color="inherit">Home</Button>
               <Button onClick={sales} color="inherit">Sales</Button>
-              <Button color="inherit">Register</Button>
+              {/* <Button onClick={login} color="inherit">Login</Button>
+              <Button onClick={register} color="inherit">Register</Button> */}
               {/* <Link to="/">Home</Link> |
               <Link to="sales"> Sales</Link> */}
+            {loginButton}
+            {registerButton}
             {logoutButton}
         </Toolbar>
       </AppBar>
