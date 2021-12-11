@@ -43,7 +43,7 @@ const Create = () => {
         [e.target.name] : e.target.value
       }))
 
-        setState({
+      setState({
         ...state,
         [e.target.name]: e.target.checked,
       })
@@ -96,7 +96,10 @@ const Create = () => {
               <MenuItem value="Galway">Galway</MenuItem>
               <MenuItem value="Mayo">Mayo</MenuItem>
               <MenuItem value="Wexford">Wexford</MenuItem>
+              <MenuItem value="Austin">Austin</MenuItem>
+              <MenuItem value="Denver">Denver</MenuItem>
               <MenuItem value="New York">New York</MenuItem>
+              <MenuItem value="Seattle">Seattle</MenuItem>
               <MenuItem value="San Diego">San Diego</MenuItem>
               <MenuItem value="London">London</MenuItem>
               <MenuItem value="Liverpool">Liverpool</MenuItem>
@@ -130,7 +133,7 @@ const Create = () => {
           </div>
 
           {/* <div className="form-group">
-            <TextField label="Price" variant="filled" name="$numberDecimal" onChange={handleForm} />
+            <TextField label="Price" variant="filled" name=["$numberDecimal"] onChange={handleForm} />
           </div> */}
 
           <div className="form-group">

@@ -3,6 +3,9 @@ import { useParams } from 'react-router-dom'
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
+import { Typography, Collapse, IconButton, CardActions, CardContent, CardMedia, CardHeader, Card } from '@mui/material'
+import { styled } from '@mui/material/styles';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 const Show = () => {
 
@@ -10,6 +13,23 @@ const Show = () => {
     const [sale, setSale] = useState(null)
 
     // let token = localStorage.getItem("token")
+
+    const ExpandMore = styled((props) => {
+      const { expand, ...other } = props;
+      return <IconButton {...other} />;
+    })(({ theme, expand }) => ({
+      transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
+      marginLeft: 'auto',
+      transition: theme.transitions.create('transform', {
+        duration: theme.transitions.duration.shortest,
+      }),
+    }));
+
+      const [expanded, setExpanded] = useState(false);
+    
+      const handleExpandClick = () => {
+        setExpanded(!expanded);
+      };
 
     useEffect(() => {
         axios
@@ -53,18 +73,58 @@ const Show = () => {
   
     return (
       <div>
+        <Card sx={{ maxWidth: 545 }}>
+          <CardHeader
+            title="Sale Info"
+          />
+        <CardContent>
+          <Typography paragraph>
+            <b>Sale Date:</b> {sale.saleDate}
+          </Typography>
+          <Typography paragraph>
+            <b>Store Location:</b> {sale.storeLocation}
+          </Typography>
+          {/* <Typography paragraph>
+            <b>Coupon Used:</b> {sale.couponUsed}
+          </Typography> */}
+          <Typography paragraph>
+            <b>Purchase Method:</b> {sale.purchaseMethod}
+          </Typography>
+        </CardContent>
+          <CardActions disableSpacing>
+            <Typography paragraph>
+              <b>View More Info</b>
+            </Typography>
+            <ExpandMore
+              expand={expanded}
+              onClick={handleExpandClick}
+              aria-expanded={expanded}
+              aria-label="show more"
+            >
+              <ExpandMoreIcon />
+            </ExpandMore>
+          </CardActions>
+            <Collapse in={expanded} timeout="auto" unmountOnExit>
+              <CardContent>
+                <Typography paragraph>Customer Info:</Typography>
+                <Typography paragraph>
+                  <b>Customer Email:</b> {sale.customer.email}
+                </Typography>
+                <Typography paragraph>
+                  <b>Customer Gender:</b> {sale.customer.gender}
+                </Typography>
+                <Typography paragraph>
+                  <b>Customer Age:</b> {sale.customer.age}
+                </Typography>
+                <Typography>
+                  <b>Customer Satisfaction:</b> {sale.customer.satisfaction}
+                </Typography>
+              </CardContent>
+            </Collapse>
+        </Card>
         <h2>This is the sale show page {_id} </h2>
         <Link to="edit">Edit</Link>
-
-        <p><b>Sale Date:</b> {sale.saleDate}</p>
         {itemsList}
-        <p><b>Store Location:</b> {sale.storeLocation}</p>
-        <p><b>Customer Email:</b> {sale.customer.email}</p>
-        <p><b>Customer Gender:</b> {sale.customer.gender}</p>
-        <p><b>Customer Age:</b> {sale.customer.age}</p>
-        <p><b>Customer Satisfaction:</b> {sale.customer.satisfaction}</p>
-        <p><b>Coupon Used:</b> {sale.couponUsed}</p>
-        <p><b>Purchase Method:</b> {sale.purchaseMethod}</p>
       </div>
     )
   }

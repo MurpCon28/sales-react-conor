@@ -1,9 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Button from '@mui/material/Button';
 
 const Index = () => {
   const [sales, setSales] = useState(null);
+
+  let navigate = useNavigate()
 
   useEffect(() => {
     axios
@@ -16,6 +19,10 @@ const Index = () => {
         console.log(`Error: ${error}`);
       });
   }, []);
+
+  const create = () => {
+    navigate('create')
+  }
 
   if (!sales) return null;
 
@@ -33,7 +40,7 @@ const Index = () => {
     <div>
       <h2> Sales </h2>
       <p>This is the sales index page</p>
-      <Link to="create"> Create</Link>
+      <Button onClick={create} variant="contained">Create</Button>
       {salesList}
     </div>
   );
