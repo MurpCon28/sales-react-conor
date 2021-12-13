@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 const RegisterForm = (props) => {
 // const RegisterForm = () => {
 
-  const[form, setForm] = useState({ name: "2Testt Name", email: "2registerTestEmail@email.com", password: "password"})
+  const[form, setForm] = useState({ name: "7Testt Name", email: "7registerTestEmail@email.com", password: "password"})
 
   let navigate = useNavigate()
 
@@ -28,20 +28,20 @@ const RegisterForm = (props) => {
         email: form.email,
         password: form.password
       })
-            .then(response => {
-              console.log(response.data.auth_token)
-              // props.onAuthenticated(true, response.data.auth_token)
-              axios.post('http://localhost:8001/users/login', {
-                email: form.email,
-                password: form.password
-              })
-                .then(response => {
-                  // console.log(response.data.auth_token)
-                  props.onAuthenticated(true, response.data.auth_token)
-                })
-            navigate('/')
+        .then(response => {
+          console.log(response.data.auth_token)
+          // props.onAuthenticated(true, response.data.auth_token)
             })
-            .catch(err => console.log(err))
+        .catch(err => console.log(err))
+      axios.post('http://localhost:8001/users/login', {
+        email: form.email,
+        password: form.password
+      })
+        .then(response => {
+          // console.log(response.data.auth_token)
+          props.onAuthenticated(true, response.data.auth_token)
+        })
+      // navigate('/')
     }
 
     let btnStyles = {

@@ -27,7 +27,7 @@ const Edit = () => {
   let {_id} = useParams()
   let navigate = useNavigate()
 
-  let token = localStorage.getItem("token")
+  let token = localStorage.getItem("auth_token")
 
     useEffect(() => {
         axios
@@ -53,7 +53,7 @@ const Edit = () => {
           //   name: sale.items.name,
           //   tags: sale.items.tags,
           //   // price: {
-          //   //   $numberDecimal: sale.items.price.$numberDecimal
+          //   //   ["$numberDecimal"]: sale.items.price.["$numberDecimal"]
           //   // },
           //   quantity: sale.items.quantity
           // },
@@ -189,15 +189,15 @@ const Edit = () => {
         {
           form.sale.items.quantity ? (
             <div className="form-group">
-              <TextField label="Price" variant="filled" name="quantity" onChange={handleForm} value={form.sale.items.quantity} />
+              <TextField label="Quantity" variant="filled" name="quantity" onChange={handleForm} value={form.sale.items.quantity} />
             </div>
           ) : (<Loading />)
         } 
 
         {
-          form.sale.items.price.$numberDecimal ? (
+          form.sale.items.price.["$numberDecimal"] ? (
             <div className="form-group">
-              <TextField label="Quantity" variant="filled" name=["$numberDecimal"] onChange={handleForm} value={form.sale.items.price.["$numberDecimal"]} />
+              <TextField label="Price" variant="filled" name=["$numberDecimal"] onChange={handleForm} value={form.sale.items.price.["$numberDecimal"]} />
             </div>
           ) : (<Loading />)
         }

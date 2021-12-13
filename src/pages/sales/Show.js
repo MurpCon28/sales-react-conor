@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
-import { Typography, Collapse, IconButton, CardActions, CardContent, CardMedia, CardHeader, Card } from '@mui/material'
+import { Typography, Collapse, IconButton, CardActions, CardContent, CardMedia, CardHeader, Card, Container, Grid } from '@mui/material'
 import { styled } from '@mui/material/styles';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
@@ -52,14 +52,14 @@ const Show = () => {
 
       const Item = (props) => {
        const tagList = props.item.tags.map(tag => (
-          <p><b>Tag: </b>{tag}</p>
+          <p><b>Tags: </b>{tag}</p>
         ))
 
         return (
           <>
             <p><b>Item: </b>{props.item.name}</p>
             {tagList}
-            <p><b>Price: </b>{props.item.price.$numberDecimal}</p>
+            <p><b>Price: </b>€{props.item.price.$numberDecimal}</p>
             <p><b>Quantity: </b>{props.item.quantity}</p>
             <br/>
           </>
@@ -73,40 +73,33 @@ const Show = () => {
   
     return (
       <div>
-        <Card sx={{ maxWidth: 545 }}>
-          <CardHeader
-            title="Sale Info"
-          />
-        <CardContent>
-          <Typography paragraph>
-            <b>Sale Date:</b> {sale.saleDate}
-          </Typography>
-          <Typography paragraph>
-            <b>Store Location:</b> {sale.storeLocation}
-          </Typography>
-          {/* <Typography paragraph>
-            <b>Coupon Used:</b> {sale.couponUsed}
-          </Typography> */}
-          <Typography paragraph>
-            <b>Purchase Method:</b> {sale.purchaseMethod}
-          </Typography>
-        </CardContent>
-          <CardActions disableSpacing>
-            <Typography paragraph>
-              <b>View More Info</b>
-            </Typography>
-            <ExpandMore
-              expand={expanded}
-              onClick={handleExpandClick}
-              aria-expanded={expanded}
-              aria-label="show more"
-            >
-              <ExpandMoreIcon />
-            </ExpandMore>
-          </CardActions>
-            <Collapse in={expanded} timeout="auto" unmountOnExit>
+        <Container maxWidth="sm">
+          <Card sx={{ maxWidth: 635 }}>
+            <CardHeader title="Sale Info"/>
+            
+            <Grid container spacing={2}>
+              <Grid xs={6}>
+                <CardContent>
+                  <Link to="edit">Edit</Link>
+                  <Typography paragraph>
+                    <b>Sale Date:</b> {sale.saleDate}
+                  </Typography>
+                  <Typography paragraph>
+                    <b>Store Location:</b> {sale.storeLocation}
+                  </Typography>
+                  {/* <Typography paragraph>
+                    <b>Coupon Used:</b> {sale.couponUsed}
+                  </Typography> */}
+                  <Typography paragraph>
+                    <b>Purchase Method:</b> {sale.purchaseMethod}
+                  </Typography>
+                </CardContent>
+              </Grid>
+            <Grid xs={6}>
               <CardContent>
-                <Typography paragraph>Customer Info:</Typography>
+                <Typography paragraph>
+                  <b>Customer Info:</b>
+                </Typography>
                 <Typography paragraph>
                   <b>Customer Email:</b> {sale.customer.email}
                 </Typography>
@@ -120,11 +113,34 @@ const Show = () => {
                   <b>Customer Satisfaction:</b> {sale.customer.satisfaction}
                 </Typography>
               </CardContent>
-            </Collapse>
-        </Card>
+            </Grid>
+          </Grid>
+            <CardActions disableSpacing>
+              <Typography paragraph>
+                <b>View Items Info</b>
+              </Typography>
+              <ExpandMore
+                expand={expanded}
+                onClick={handleExpandClick}
+                aria-expanded={expanded}
+                aria-label="show more"
+              >
+                <ExpandMoreIcon />
+              </ExpandMore>
+            </CardActions>
+              <Collapse in={expanded} timeout="auto" unmountOnExit>
+                <CardContent>
+                  <Typography paragraph>
+                    <b>Items Info:</b>
+                  </Typography>
+                    <Typography paragraph>
+                      {itemsList}
+                   </Typography>
+                </CardContent>
+              </Collapse>
+          </Card>
+        </Container>
         <h2>This is the sale show page {_id} </h2>
-        <Link to="edit">Edit</Link>
-        {itemsList}
       </div>
     )
   }

@@ -1,14 +1,17 @@
 import LoginForm from "../components/LoginForm"
+import { Container } from '@mui/material'
 
 const Login = props => {
 
   return (
-    <div>
-      <h2>Login</h2>
+    <Container maxWidth="sm">
+      <div>
+        <h2>Login</h2>
 
-      {!props.authenticated ? <LoginForm onAuthenticated={props.onAuthenticated} /> : ""}
+        {!props.authenticated ? <LoginForm onAuthenticated={props.onAuthenticated} /> : ""}
 
-    </div>
+      </div>
+    </Container>
   )
 }
 
