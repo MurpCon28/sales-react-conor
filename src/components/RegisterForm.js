@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import axios from "axios";
-import TextField from '@mui/material/TextField'
+import { TextField, Button, CardHeader, Card, Container} from '@mui/material'
 import { useNavigate } from "react-router-dom";
 
 const RegisterForm = (props) => {
 // const RegisterForm = () => {
 
-  const[form, setForm] = useState({ name: "7Testt Name", email: "7registerTestEmail@email.com", password: "password"})
+  const[form, setForm] = useState({ name: "9Testt Name", email: "9registerTestEmail@email.com", password: "password"})
 
   let navigate = useNavigate()
 
@@ -40,28 +40,27 @@ const RegisterForm = (props) => {
         .then(response => {
           // console.log(response.data.auth_token)
           props.onAuthenticated(true, response.data.auth_token)
+          navigate('/')
         })
-      // navigate('/')
-    }
-
-    let btnStyles = {
-      backgroundColor: "yellow",
-      dontWeight: "bold"
     }
 
     return (
       <>
-      <div className="form-group">
-        <TextField label="Email" type="email" variant="outlined" name="email" onChange={handleForm} />
-      </div>
-      <div className="form-group">
-        <TextField label="Name" variant="outlined" name="name" onChange={handleForm} />
-      </div>
-      <div className="form-group">
-        <TextField label="Password" type="password" variant="outlined" name="password" onChange={handleForm} />
-      </div>
-
-        <button style={btnStyles} onClick={submitForm}>Submit</button>
+      <Card sx={{ maxWidth: 250 }}>
+          <Container maxWidth="sm">
+            <CardHeader title="Register"/>
+            <div className="form-group">
+              <TextField label="Email" type="email" variant="outlined" name="email" onChange={handleForm} />
+            </div>
+            <div className="form-group">
+              <TextField label="Name" variant="outlined" name="name" onChange={handleForm} />
+            </div>
+            <div className="form-group">
+              <TextField label="Password" type="password" variant="outlined" name="password" onChange={handleForm} />
+            </div>
+            <Button onClick={submitForm} variant="contained">Register</Button>
+          </Container>
+        </Card>
       </>
     )
   }

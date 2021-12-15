@@ -1,6 +1,6 @@
 import LoginForm from "../components/LoginForm"
 import RegisterForm from "../components/RegisterForm"
-import { Container } from '@mui/material'
+import { Container, Grid } from '@mui/material'
 
 const Home = props => {
 
@@ -10,10 +10,15 @@ const Home = props => {
         <h2>Home</h2>
 
         <p>This is a site for sales, that contain the date of sale, store location, items purchased and other details, and details of the customer and their satifaction</p>
-
-        {!props.authenticated ? <LoginForm onAuthenticated={props.onAuthenticated} /> : ""}
-        {!props.authenticated ? <RegisterForm onAuthenticated={props.onAuthenticated} /> : ""}
-        
+        <br/>
+        <Grid container spacing={2}>
+          <Grid xs={6}>
+            {!props.authenticated ? <LoginForm onAuthenticated={props.onAuthenticated} /> : ""}
+          </Grid>
+          <Grid xs={6}>
+            {!props.authenticated ? <RegisterForm onAuthenticated={props.onAuthenticated} /> : ""}
+          </Grid>
+        </Grid>
       </div>
     </Container>
   )

@@ -1,16 +1,13 @@
 import RegisterForm from "../components/RegisterForm"
 import { Container } from '@mui/material'
 
-// const Register = props => {
-const Register = () => {
+const Register = props => {
 
   return (
     <Container maxWidth="sm">
       <div>
-        <h2>Register</h2>
 
-        {/* {!props.authenticated ? <RegisterForm onAuthenticated={props.onAuthenticated} /> : ""} */}
-        <RegisterForm /> 
+        {!props.authenticated ? <RegisterForm onAuthenticated={props.onAuthenticated} /> : ""}
 
       </div>
     </Container>

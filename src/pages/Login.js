@@ -6,7 +6,6 @@ const Login = props => {
   return (
     <Container maxWidth="sm">
       <div>
-        <h2>Login</h2>
 
         {!props.authenticated ? <LoginForm onAuthenticated={props.onAuthenticated} /> : ""}
 

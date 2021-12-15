@@ -6,7 +6,7 @@ import Navbar from "./components/Navbar";
 //PAGES
 import Home from "./pages/Home";
 import Login from "./pages/Login";
-import Register from "./pages/Register";
+// import Register from "./pages/Register";
 import SalesIndex from "./pages/sales/Index";
 import SalesShow from "./pages/sales/Show";
 import SalesCreate from "./pages/sales/Create";
@@ -50,8 +50,10 @@ const App = () => {
       <Navbar onAuthenticated={onAuthenticated} authenticated={authenticated} />
       <Routes>
         <Route path="/" element={<Home onAuthenticated={onAuthenticated} authenticated={authenticated} />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login onAuthenticated={onAuthenticated} authenticated={authenticated} />} />
+        {/* <Route path="/register" element={<Register onAuthenticated={onAuthenticated} authenticated={authenticated} />} /> */}
+        {/* <Route path="/login" element={<Login />}  />
+        <Route path="/register" element={<Register />} /> */}
         <Route path="/sales" element={<SalesIndex />} />
         <Route path="/sales/:_id" element={<SalesShow />} />
         {protectedSales}

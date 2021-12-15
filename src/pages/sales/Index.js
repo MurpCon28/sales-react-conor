@@ -64,7 +64,7 @@ const Index = () => {
       <Container maxWidth="fixed">
         <h2> Sales </h2>
         <p>This is the sales index page</p>
-        <Button onClick={create} variant="contained">Create</Button>
+        <Button onClick={create} variant="outlined">Create</Button>
         <Paper sx={{ width: '100%', overflow: 'hidden' }}>
           <TableContainer sx={{ maxHeight: 440 }}>
             <Table stickyHeader aria-label="sticky table">
@@ -116,7 +116,7 @@ const Index = () => {
 
         <h2> Sales </h2>
         <p>This is the sales index page</p>
-        <Button onClick={create} variant="contained">Create</Button>
+        <Button onClick={create} variant="outlined">Create</Button>
         {salesList}
       </Container>
     </div>
