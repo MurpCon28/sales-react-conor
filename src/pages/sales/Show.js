@@ -81,22 +81,21 @@ const Show = () => {
         navigate('edit')
       }
 
-      // const delete = () => {
-      //   axios
-      //     .delete(`http://localhost:8001/sales/delete/${_id}`, {
-      //         headers: {
-      //             "Authorization": `Bearer ${token}`
-      //         }
-      //     })
-      //     .then((response) => {
-      //       console.log(response.data);
-      //     })
-      //     .catch((err) => {
-      //       console.log(`Error: ${err}`);
-      //     });
-      //   }, [_id, token])
-      //  }, [_id])
-      // }
+      const onDelete = () => {
+        axios
+          .delete(`http://localhost:8001/sales/delete/${_id}`, {
+              headers: {
+                  "Authorization": `Bearer ${token}`
+              }
+          })
+          .then((response) => {
+            console.log(response.data);
+            navigate(`/sales`)
+          })
+          .catch((err) => {
+            console.log(`Error: ${err}`);
+          });
+      }
   
     return (
       <div>
@@ -105,7 +104,7 @@ const Show = () => {
             <Container maxWidth="sm">
               <CardHeader title="Sale & Customer Info"/>
               <Button onClick={edit} variant="contained">Edit</Button>
-              <Button variant="contained" color="error" startIcon={<DeleteIcon />}>Delete</Button>
+              <Button onClick={() => onDelete(sale._id)} variant="contained" color="error" startIcon={<DeleteIcon />}>Delete</Button>
               <Grid container spacing={2}>
                 <Grid xs={6}>
                   <CardContent>
