@@ -12,6 +12,7 @@ import SalesShow from "./pages/sales/Show";
 import SalesCreate from "./pages/sales/Create";
 import SalesEdit from "./pages/sales/Edit";
 import PageNotFound from "./pages/PageNotFound";
+import NoPermission from "./pages/NoPermission";
 
 const App = () => {
   const [authenticated, setAuthenticated] = useState(false)
@@ -43,6 +44,9 @@ const App = () => {
         </>
         
       )
+    }
+    else {
+      <Route element={<NoPermission />} />
     }
 
   return (

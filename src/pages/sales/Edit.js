@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import axios from "axios"
-import { TextField, MenuItem, FormControl, Select, InputLabel, Checkbox, FormControlLabel, FormLabel, FormGroup, Button, Container, Grid } from '@mui/material'
+import { TextField, MenuItem, FormControl, Select, InputLabel, Checkbox, FormControlLabel, FormLabel, FormGroup, Button, Container, Grid, CircularProgress } from '@mui/material'
 import { useNavigate, useParams } from "react-router-dom";
 // import { AdapterMoment, LocalizationProvider, DateTimePicker} from '@mui/lab'
 import moment from 'moment'
@@ -58,10 +58,10 @@ const Edit = () => {
           //   quantity: sale.items.quantity
           // },
           // customer: {
-          //   gender: sale.customer.gender,
-          //   age: sale.customer.age,
-          //   email: sale.customer.email,
-          //   satisfaction: sale.customer.satisfaction
+            // gender: sale.customer,
+            // age: sale.customer.age,
+            // email: sale.customer.email,
+            // satisfaction: sale.customer.satisfaction
           // },
           purchaseMethod: sale.purchaseMethod
         })
@@ -102,7 +102,7 @@ const Edit = () => {
     }
 
     const Loading = () => {
-      return <div className="form-group">Loading...</div>
+      return <div className="form-group"><CircularProgress /></div>
     }
   
     return (
@@ -221,14 +221,14 @@ const Edit = () => {
                 <TextField label="Price" variant="filled" name=["$numberDecimal"] onChange={handleForm} value={form.sale.items.price.["$numberDecimal"]} />
               </div>
             ) : (<Loading />)
-          }
+          }*/}
 
-          {
-            form.sale.customer.gender ? (
+          {/* {
+            form.customer ? (
               <div className="form-group">
                 <FormControl variant="filled" fullWidth>
                   <InputLabel id="gender-select-label">Customer Gender</InputLabel>
-                    <Select labelId="gender-select-label" onChange={handleForm} label="gender" name="gender" value={form.sale.customer.gender} >
+                    <Select labelId="gender-select-label" onChange={handleForm} label="gender" name="gender" value={form.customer} >
                       <MenuItem value="M">Male</MenuItem>
                       <MenuItem value="F">Female</MenuItem>
                       <MenuItem value="O">Other</MenuItem>
@@ -236,8 +236,8 @@ const Edit = () => {
                 </FormControl>
               </div>
             ) : (<Loading />)
-          }
-
+          } */}
+{/*
           {
             form.sale.customer.age ? (
               <div className="form-group">
