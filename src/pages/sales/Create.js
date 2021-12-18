@@ -209,7 +209,7 @@ const Create = () => {
               </Grid>
             </Grid>
             <br/>
-        <Button onClick={submitForm} variant="contained">Submit</Button>
+        <Button onClick={submitForm} align="right" variant="contained">Submit</Button>
       </Container>
     </div>
   )

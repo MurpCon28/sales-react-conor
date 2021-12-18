@@ -62,15 +62,17 @@ const Show = () => {
 
         return (
           <>
-          {/* <Grid container spacing={3}>
-            <Grid xs={4}> */}
-              <p><b>Item: </b>{props.item.name}</p>
-              {tagList}
-              <p><b>Price: </b>€{props.item.price.$numberDecimal}</p>
-              <p><b>Quantity: </b>{props.item.quantity}</p>
-              <br/>
-            {/* </Grid>
-          </Grid> */}
+          <Container maxWidth="sm">
+            <Grid container spacing={3}>
+              <Grid xs={4}>
+                <p><b>Item: </b>{props.item.name}</p>
+                {tagList}
+                <p><b>Price: </b>€{props.item.price.$numberDecimal}</p>
+                <p><b>Quantity: </b>{props.item.quantity}</p>
+                <br/>
+              </Grid>
+            </Grid>
+          </Container>
           </>
         )
 
@@ -104,7 +106,10 @@ const Show = () => {
       <div>
         <Container maxWidth="sm">
           <Slide direction="up" in={loaded} mountOnEnter unmountOnExit>
-            <Card sx={{ maxWidth: 635 }}>
+            <Card sx={{ maxWidth: 635 }}
+              style={{
+                backgroundColor: '#e7f6fa'
+              }}>
               <Container maxWidth="sm">
                 <CardHeader title="Sale & Customer Info"/>
                   <Button onClick={edit} variant="contained">Edit</Button>

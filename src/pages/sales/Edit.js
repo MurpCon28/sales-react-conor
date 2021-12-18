@@ -49,6 +49,9 @@ const Edit = () => {
         setForm({
           saleDate: moment(sale.saleDate).format("yyyy-MM-DDThh:mm"),
           storeLocation: sale.storeLocation,
+          gender: sale.customer,
+          // age: sale.customer.age,
+
           // items: {
           //   name: sale.items.name,
           //   tags: sale.items.tags,
@@ -58,8 +61,8 @@ const Edit = () => {
           //   quantity: sale.items.quantity
           // },
           // customer: {
-            // gender: sale.customer,
-            // age: sale.customer.age,
+          //   gender: sale.customer,
+            // age: sale.customerage,
             // email: sale.customer.email,
             // satisfaction: sale.customer.satisfaction
           // },
@@ -223,12 +226,12 @@ const Edit = () => {
             ) : (<Loading />)
           }*/}
 
-          {/* {
-            form.customer ? (
+          {
+            form.gender ? (
               <div className="form-group">
                 <FormControl variant="filled" fullWidth>
                   <InputLabel id="gender-select-label">Customer Gender</InputLabel>
-                    <Select labelId="gender-select-label" onChange={handleForm} label="gender" name="gender" value={form.customer} >
+                    <Select labelId="gender-select-label" onChange={handleForm} label="gender" name="gender" value={form.gender} >
                       <MenuItem value="M">Male</MenuItem>
                       <MenuItem value="F">Female</MenuItem>
                       <MenuItem value="O">Other</MenuItem>
@@ -236,16 +239,16 @@ const Edit = () => {
                 </FormControl>
               </div>
             ) : (<Loading />)
-          } */}
-{/*
-          {
-            form.sale.customer.age ? (
-              <div className="form-group">
-                <TextField label="Customer Age" variant="filled" name="age" onChange={handleForm} value={form.sale.customer.age} />
-              </div>
-            ) : (<Loading />)
           }
 
+          {/* {
+            form.age ? (
+              <div className="form-group">
+                <TextField label="Customer Age" variant="filled" name="age" onChange={handleForm} value={form.age} />
+              </div>
+            ) : (<Loading />)
+          } */}
+{/*
           {
             form.sale.customer.email ? (
               <div className="form-group">

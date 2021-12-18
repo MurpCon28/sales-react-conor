@@ -46,7 +46,10 @@ const RegisterForm = (props) => {
 
     return (
       <>
-      <Card sx={{ maxWidth: 250 }}>
+      <Card sx={{ maxWidth: 250 }}
+        style={{
+          backgroundColor: '#e7f6fa'
+        }}>
           <Container maxWidth="sm">
             <CardHeader title="Register"/>
             <div className="form-group">

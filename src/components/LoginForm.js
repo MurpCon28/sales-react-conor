@@ -40,7 +40,10 @@ const LoginForm = (props) => {
     return (
       <>
         {/* <Slide direction="up" in={loaded} mountOnEnter unmountOnExit> */}
-          <Card sx={{ maxWidth: 250 }}>
+          <Card sx={{ maxWidth: 250 }}
+            style={{
+              backgroundColor: '#e7f6fa'
+            }}>
             <Container maxWidth="sm">
               <CardHeader title="Login"/>
                 <div className="form-group">

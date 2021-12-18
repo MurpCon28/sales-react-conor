@@ -83,12 +83,15 @@ const Index = () => {
         >
           <Paper sx={{ width: '100%', overflow: 'hidden' }}
             style={{
-              backgroundColor: '#abd1e6'
+              backgroundColor: '#e7f6fa'
             }}
           >
             <TableContainer sx={{ maxHeight: 440 }}>
               <Table stickyHeader aria-label="sticky table">
-                <TableHead>
+                <TableHead 
+                style={{
+                    backgroundColor: '#abd1e6'
+                  }}>
                   <TableRow>
                    <TableCell>Sale Info</TableCell>
                     {/*<TableCell align="right">Store Location</TableCell>*/}
