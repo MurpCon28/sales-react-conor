@@ -24,6 +24,7 @@ const Edit = () => {
 
   const { electronics, school, office, stationary, general, organization, writing, travel, kids } = state;
 
+  //useParams is used for declaring the _id so it can be used to get the info of the needed sale
   let {_id} = useParams()
   let navigate = useNavigate()
 
@@ -31,6 +32,7 @@ const Edit = () => {
 
     useEffect(() => {
         axios
+        //A get request is sent to retrieve the sale with the given _id of the sale that was clicked
           .get(`http://localhost:8001/sales/${_id}`, {
               headers: {
                   "Authorization": `Bearer ${token}`
@@ -38,6 +40,7 @@ const Edit = () => {
           })
           .then((response) => {
             console.log(response.data);
+            //The setSales gets the data/info of sale
             setSales(response.data.sale);
           })
           .catch((err) => {
@@ -47,9 +50,12 @@ const Edit = () => {
 
       useEffect(()=> {
         setForm({
+          //moment is used to format the saleDate to the desired format
           saleDate: moment(sale.saleDate).format("yyyy-MM-DDThh:mm"),
           storeLocation: sale.storeLocation,
+          //When I have the set form as shown below in the compondents in the console in the gender field all customer info is shown, instead of just gender
           gender: sale.customer,
+          //And when the below code is shown, the cusomter age is shown, but when the page is refreshed or if the user redircts to a differnt page, the site gets an error with age
           // age: sale.customer.age,
 
           // items: {
@@ -99,17 +105,21 @@ const Edit = () => {
       })
             .then(response => {
               console.log(response.data)
+              //After the edit form has been submitted the site redircts to the view sale page of the one that was just editted
               navigate(`/sales/${_id}`)
             })
             .catch(err => console.log(err))
     }
 
+    //This const uses a circle loading symbol when the page is loaded
     const Loading = () => {
       return <div className="form-group"><CircularProgress /></div>
     }
   
     return (
       <div>
+        {/* Edit has a few errors, including the one mentioned above with cusomter and item info not showing and given errors. Also when the edit form is submitted
+        in the console compondents area the useState changes when you make an edit, but on submit nothing changes due to an error with the backend. */}
         <Container maxWidth="sm">
           <h2>Edit</h2>
           <h4>Sale Info:</h4>
@@ -274,7 +284,7 @@ const Edit = () => {
             ) : (<Loading />)
           } */}
 
-          <Button onClick={submitForm} variant="contained">Submit</Button>
+          <Button onClick={submitForm} style={{float: 'right'}} variant="contained">Submit</Button>
         </Container>
       </div>
     )

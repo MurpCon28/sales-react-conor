@@ -6,7 +6,9 @@ import { useNavigate } from "react-router-dom";
 const RegisterForm = (props) => {
 // const RegisterForm = () => {
 
-  const[form, setForm] = useState({ name: "9Testt Name", email: "9registerTestEmail@email.com", password: "password"})
+//Similar to the LoginForm.js page, this useState is used for a quick register
+  // const[form, setForm] = useState({ name: "9Testt Name", email: "9registerTestEmail@email.com", password: "password"})
+  const[form, setForm] = useState({})
 
   let navigate = useNavigate()
 
@@ -23,6 +25,7 @@ const RegisterForm = (props) => {
     const submitForm = () => {
       console.log(form)
   
+      //Again, like the Login submit button, when clicked the register form is used for the post request of user register and a new user is created with a auth_token
       axios.post('http://localhost:8001/users/register', {
         name: form.name,
         email: form.email,
@@ -33,6 +36,7 @@ const RegisterForm = (props) => {
           // props.onAuthenticated(true, response.data.auth_token)
             })
         .catch(err => console.log(err))
+        //After the register is completed the email and password info from the new user is token and used for the post request of login to login the user into the site
       axios.post('http://localhost:8001/users/login', {
         email: form.email,
         password: form.password
@@ -61,7 +65,7 @@ const RegisterForm = (props) => {
             <div className="form-group">
               <TextField label="Password" type="password" variant="outlined" name="password" onChange={handleForm} />
             </div>
-            <Button onClick={submitForm} variant="contained">Register</Button>
+            <Button onClick={submitForm} style={{float: 'center'}} variant="contained">Register</Button>
           </Container>
         </Card>
       </>

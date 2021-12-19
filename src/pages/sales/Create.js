@@ -20,6 +20,7 @@ const Create = () => {
 
   let navigate = useNavigate()
 
+  //This const state is used for the checkboxes of tags in items, making them false makes sure none are checked when the page is loaded
     const [state, setState] = useState({
       electronics: false,
       school: false,
@@ -57,12 +58,14 @@ const Create = () => {
       let token = localStorage.getItem("auth_token")
   
       axios.post('http://localhost:8001/sales/', form, {
+        //The headers is used to make sure the user has authorization and checks to see if they have a suitable auth_token
         headers: {
           "Authorization": `Bearer ${token}`
       }
       })
             .then(response => {
               console.log(response.data)
+              //After the submit button is clicked the user is redircted to the sales index page
               navigate(`/sales`)
             })
             .catch(err => console.log(err))
@@ -70,6 +73,9 @@ const Create = () => {
   
     return (
       <div>
+        {/* There is an error with the create, the fields for customer are contained in an object within sales and items is an array, when the create is submitted 
+        the customer info and item fields do not get created into these areas, instead out side of the area along side saleDate and storeLocation. The only way to
+        observe the newly created sale is to view it in an api consumer like postman or insomia */}
         <Container maxWidth="sm">
           <h2>Create</h2>
           <h4>Sale Info:</h4>
@@ -209,7 +215,7 @@ const Create = () => {
               </Grid>
             </Grid>
             <br/>
-        <Button onClick={submitForm} align="right" variant="contained">Submit</Button>
+        <Button onClick={submitForm} style={{float: 'right'}} variant="contained">Submit</Button>
       </Container>
     </div>
   )

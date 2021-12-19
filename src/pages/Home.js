@@ -11,6 +11,7 @@ const Home = props => {
 
         <p>This is a site for sales, that contain the date of sale, store location, items purchased and other details, and details of the customer and their satifaction</p>
         <br/>
+        {/* If the user is not logged in they can see these cards on the home page */}
         <Grid container spacing={2}>
           <Grid xs={6}>
             {!props.authenticated ? <LoginForm onAuthenticated={props.onAuthenticated} /> : ""}

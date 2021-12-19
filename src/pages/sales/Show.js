@@ -16,6 +16,7 @@ const Show = () => {
 
     let token = localStorage.getItem("auth_token")
 
+    //expandMore is used within a card, when its clicked a transistion is made and the card displays more info of sales
     const ExpandMore = styled((props) => {
       const { expand, ...other } = props;
       return <IconButton {...other} />;
@@ -27,6 +28,7 @@ const Show = () => {
       }),
     }));
 
+      //expanded is created for a usestate
       const [expanded, setExpanded] = useState(false);
     
       const handleExpandClick = () => {
@@ -36,6 +38,7 @@ const Show = () => {
       const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
+      //When the page loads a get request is sent to sales DB to get a sale by the _id of the one the user clicked to view
         axios
           .get(`http://localhost:8001/sales/${_id}`, {
               // headers: {
@@ -55,7 +58,9 @@ const Show = () => {
 
       if (!sale) return null;
 
+      //Item is a loop that gets all the items info
       const Item = (props) => {
+        //tagList is looped to get all the tags for one item in the array
        const tagList = props.item.tags.map(tag => (
           <p><b>Tags: </b>{tag}</p>
         ))
@@ -63,6 +68,7 @@ const Show = () => {
         return (
           <>
           <Container maxWidth="sm">
+            {/* Tried adding grid layout to all the items */}
             <Grid container spacing={3}>
               <Grid xs={4}>
                 <p><b>Item: </b>{props.item.name}</p>
@@ -78,6 +84,7 @@ const Show = () => {
 
       }
 
+      //itemsList loops all the sale items, gets the above code from item and places it within the itemList
       const itemsList = sale.items.map(item => (
         <Item key={item.name} item={item} />
       ))
@@ -86,6 +93,7 @@ const Show = () => {
         navigate('edit')
       }
 
+      //When the delete button is clicked a delete request is sent to the sales DB and the user is redircted to the sales idex page
       const onDelete = () => {
         axios
           .delete(`http://localhost:8001/sales/delete/${_id}`, {
@@ -104,7 +112,9 @@ const Show = () => {
   
     return (
       <div>
+        {/* The sale info is contained inside a card, which has an expand for more */}
         <Container maxWidth="sm">
+          {/* The slide transistion is used when the page is loaded the card slides onto the page */}
           <Slide direction="up" in={loaded} mountOnEnter unmountOnExit>
             <Card sx={{ maxWidth: 635 }}
               style={{
@@ -114,6 +124,7 @@ const Show = () => {
                 <CardHeader title="Sale & Customer Info"/>
                   <Button onClick={edit} variant="contained">Edit</Button>
                   <Button onClick={() => onDelete(sale._id)} variant="contained" color="error" startIcon={<DeleteIcon />}>Delete</Button>
+                  {/* The grid is used to space the info out in the card */}
                 <Grid container spacing={2}>
                   <Grid xs={6}>
                     <CardContent>
@@ -148,6 +159,7 @@ const Show = () => {
                   </CardContent>
                 </Grid>
               </Grid>
+              {/* When the view more is clicked, the card expands to show the items array info */}
                 <CardActions disableSpacing>
                   <Typography paragraph>
                     <b>View Items Info</b>

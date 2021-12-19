@@ -35,6 +35,7 @@ const App = () => {
     }
   }
 
+  //If the user is authenicated, meaning logined they can see the website pages within this If statement
     if(authenticated) {
       protectedSales = (
         <>
@@ -45,6 +46,7 @@ const App = () => {
         
       )
     }
+    //Tried adding a page for when you arnt logged in a no permission page would show, did not work
     else {
       <Route element={<NoPermission />} />
     }

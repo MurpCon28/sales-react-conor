@@ -19,6 +19,7 @@ const Navbar = props => {
     navigate('/', { replace: true})
   }
 
+  //This is used for the button onClick, when the user clicks these buttons they are redircted
   const home = () => {
     navigate('/')
   }
@@ -35,6 +36,7 @@ const Navbar = props => {
   //   navigate('/register')
   // }
 
+  //If the user is logged in they can see the logout button, if they are not they can see a login button
   if (props.authenticated) {
     logoutButton = <Button onClick={logout} color="inherit">Logout</Button>
   } else {
@@ -49,24 +51,25 @@ const Navbar = props => {
 
       <AppBar position="static">
         <Toolbar>
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              sx={{ mr: 2 }}
-            >
-              <MenuIcon />
+          <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            sx={{ mr: 2 }}
+          >
+            <MenuIcon />
             </IconButton>
-              <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                Sales
-              </Typography>
-              <Button onClick={home} color="inherit">Home</Button>
-              <Button onClick={sales} color="inherit">Sales</Button>
-              {/* <Button onClick={login} color="inherit">Login</Button>
-              <Button onClick={register} color="inherit">Register</Button> */}
-              {/* <Link to="/">Home</Link> |
-              <Link to="sales"> Sales</Link> */}
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              Sales
+            </Typography>
+            <Button onClick={home} color="inherit">Home</Button>
+            <Button onClick={sales} color="inherit">Sales</Button>
+            {/* <Button onClick={login} color="inherit">Login</Button>
+            <Button onClick={register} color="inherit">Register</Button> */}
+            {/* <Link to="/">Home</Link> |
+            <Link to="sales"> Sales</Link> */}
+            {/* The below buttons will show depending on the authenication state */}
             {loginButton}
             {/* {registerButton} */}
             {logoutButton}

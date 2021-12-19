@@ -8,6 +8,7 @@ const Index = () => {
 
   let navigate = useNavigate()
   
+  //This useState is used for a transition
   const [loaded, setLoaded] = useState(false);
 
   // const [page, setPage] = useState(0);
@@ -23,11 +24,13 @@ const Index = () => {
   // };
 
   useEffect(() => {
+    //A get request is sent to the sales db to retrieve all sales data when the page is loaded
     axios
       .get("http://localhost:8001/sales")
       .then((response) => {
         console.log(response.data);
         setSales(response.data.sales);
+        //The setLoaded is called when the page is is opened
         setLoaded((prev) => !prev);
       })
       .catch((error) => {
@@ -35,14 +38,15 @@ const Index = () => {
       });
   }, []);
 
+  //used for onClick, redircts to the create page
   const create = () => {
     navigate('create')
   }
 
-  
-
+  //If there is no sales doesnt return anything
   if (!sales) return null;
 
+  //A salesList is created that loops through all the sales from the DB
   const salesList = sales.map((sale) => {
     
     const view = () => {
@@ -76,6 +80,7 @@ const Index = () => {
         <h2> Sales </h2>
         <p>This is the sales index page</p>
         <Button onClick={create} variant="outlined">Create</Button>
+        {/* Grow is a transistion, when the page is loaded the sale table will grow and display the sale data */}
         <Grow
           in={loaded}
           style={{ transformOrigin: '0 0 0' }}
@@ -108,6 +113,7 @@ const Index = () => {
                   </TableRow>
               </TableHead>
               <TableBody>
+                {/* Tried to create a show more rows, due to backend only the first 20 from the DB will show */}
                 {/* {rows
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((row) => {
