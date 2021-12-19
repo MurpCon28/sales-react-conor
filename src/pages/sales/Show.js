@@ -40,7 +40,7 @@ const Show = () => {
     useEffect(() => {
       //When the page loads a get request is sent to sales DB to get a sale by the _id of the one the user clicked to view
         axios
-          .get(`http://localhost:8001/sales/${_id}`, {
+          .get(`https://sales-api-app.herokuapp.com/sales/${_id}`, {
               // headers: {
               //     "Authorization": `Bearer ${token}`
               // }
@@ -96,7 +96,7 @@ const Show = () => {
       //When the delete button is clicked a delete request is sent to the sales DB and the user is redircted to the sales idex page
       const onDelete = () => {
         axios
-          .delete(`http://localhost:8001/sales/delete/${_id}`, {
+          .delete(`https://sales-api-app.herokuapp.com/sales/delete/${_id}`, {
               headers: {
                   "Authorization": `Bearer ${token}`
               }

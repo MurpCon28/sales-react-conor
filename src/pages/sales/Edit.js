@@ -33,7 +33,7 @@ const Edit = () => {
     useEffect(() => {
         axios
         //A get request is sent to retrieve the sale with the given _id of the sale that was clicked
-          .get(`http://localhost:8001/sales/${_id}`, {
+          .get(`https://sales-api-app.herokuapp.com/sales/${_id}`, {
               headers: {
                   "Authorization": `Bearer ${token}`
               }
@@ -98,7 +98,7 @@ const Edit = () => {
 
       let token = localStorage.getItem("auth_token")
   
-      axios.put(`http://localhost:8001/sales/${_id}`, form, {
+      axios.put(`https://sales-api-app.herokuapp.com/sales/${_id}`, form, {
         headers: {
           "Authorization": `Bearer ${token}`
       }

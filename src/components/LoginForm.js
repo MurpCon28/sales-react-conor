@@ -27,7 +27,7 @@ const LoginForm = (props) => {
       console.log(form)
   
       //When the submit button is clicked the email and password fields that are filled are used as part of the post request for users login of the sales DB
-      axios.post('http://localhost:8001/users/login', {
+      axios.post('https://sales-api-app.herokuapp.com/users/login', {
         email: form.email,
         password: form.password
       })

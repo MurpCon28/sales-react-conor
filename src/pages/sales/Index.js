@@ -26,7 +26,7 @@ const Index = () => {
   useEffect(() => {
     //A get request is sent to the sales db to retrieve all sales data when the page is loaded
     axios
-      .get("http://localhost:8001/sales")
+      .get("https://sales-api-app.herokuapp.com/sales")
       .then((response) => {
         console.log(response.data);
         setSales(response.data.sales);

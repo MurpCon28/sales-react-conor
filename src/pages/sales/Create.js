@@ -57,7 +57,7 @@ const Create = () => {
 
       let token = localStorage.getItem("auth_token")
   
-      axios.post('http://localhost:8001/sales/', form, {
+      axios.post('https://sales-api-app.herokuapp.com/sales/', form, {
         //The headers is used to make sure the user has authorization and checks to see if they have a suitable auth_token
         headers: {
           "Authorization": `Bearer ${token}`

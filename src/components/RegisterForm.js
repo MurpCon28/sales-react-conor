@@ -26,7 +26,7 @@ const RegisterForm = (props) => {
       console.log(form)
   
       //Again, like the Login submit button, when clicked the register form is used for the post request of user register and a new user is created with a auth_token
-      axios.post('http://localhost:8001/users/register', {
+      axios.post('https://sales-api-app.herokuapp.com/users/register', {
         name: form.name,
         email: form.email,
         password: form.password
@@ -37,7 +37,7 @@ const RegisterForm = (props) => {
             })
         .catch(err => console.log(err))
         //After the register is completed the email and password info from the new user is token and used for the post request of login to login the user into the site
-      axios.post('http://localhost:8001/users/login', {
+      axios.post('https://sales-api-app.herokuapp.com/users/login', {
         email: form.email,
         password: form.password
       })
